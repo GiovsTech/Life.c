@@ -13,26 +13,8 @@
 // UTIL FUNCTION TO TURN X,Y CARTESIAN COORDINATES INTO INDEX FOR ARRAYS
 int cartesian_to_index(int x, int y)
 {
-
-    if (x<0)
-    {
-        x = (-x) % COLS;
-        x = COLS - x;
-    }
-
-    if (y<0)
-    {
-        y = (-y) % ROWS;
-        y = ROWS - y;
-    }
-
-
-
-
-    if (x >= COLS) x %= COLS;
-    if (y >= ROWS) y %= ROWS;
-
-
+    x %= COLS;
+    y %= ROWS;
     return y * COLS + x;
 
 
