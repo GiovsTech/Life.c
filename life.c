@@ -10,11 +10,15 @@
 
 
 
-// UTIL FUNCTION TO TURN X,Y CARTESIAN COORDINATES INTO INDEX FOR ARRAYS
+// WRAPPER FUNCTION TO TURN X,Y CARTESIAN COORDINATES INTO INDEX FOR ARRAYS AND WRAP AROUND THE GRID
+
 int cartesian_to_index(int x, int y)
 {
-    x %= COLS;
-    y %= ROWS;
+
+    x = (COLS + (x % COLS)) % COLS;
+
+    y = (ROWS + (y % ROWS)) % ROWS;
+
     return y * COLS + x;
 
 
@@ -39,7 +43,7 @@ char cellstate(char *grid, int x, int y)
 void printgrid(char *grid)
 {
     int x,y;
-    printf("\033[0;0H\033[0;0f");
+    printf("\x1B[2J\x1B[H");
     for(y = 0; y < ROWS; y++){
         for(x = 0; x < COLS; x++)
         {
